@@ -1756,17 +1756,19 @@ __webpack_require__.r(__webpack_exports__);
     addTodo: function addTodo() {
       var _this2 = this;
 
-      var payload = {
-        api_token: window.apiToken,
-        name: this.todo
-      };
-      axios.post("/api/todos", payload).then(function (_ref2) {
-        var data = _ref2.data;
+      if (!_.isEmpty(this.todo)) {
+        var payload = {
+          api_token: window.apiToken,
+          name: this.todo
+        };
+        axios.post("/api/todos", payload).then(function (_ref2) {
+          var data = _ref2.data;
 
-        _this2.todos.unshift(data.data);
+          _this2.todos.unshift(data.data);
 
-        _this2.todo = null;
-      });
+          _this2.todo = null;
+        });
+      }
     }
   }
 });

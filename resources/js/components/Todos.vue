@@ -35,15 +35,17 @@
             },
 
             addTodo() {
-                const payload = {
-                    api_token: window.apiToken,
-                    name: this.todo
-                };
-                axios.post(`/api/todos`, payload)
-                    .then(({data}) => {
-                        this.todos.unshift(data.data);
-                        this.todo = null;
-                    })
+                if (! _.isEmpty(this.todo)) {
+                    const payload = {
+                        api_token: window.apiToken,
+                        name: this.todo
+                    };
+                    axios.post(`/api/todos`, payload)
+                        .then(({data}) => {
+                            this.todos.unshift(data.data);
+                            this.todo = null;
+                        })
+                }
             }
         }
     }
